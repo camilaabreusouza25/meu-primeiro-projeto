@@ -1,5 +1,7 @@
 
-package com.aula.carstore.servlet;
+package com.aula.carstore;
+
+import com.aula.carstore.model.Car;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +17,21 @@ public class CreateCarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String carName = request.getParameter("car-name");
+        String carColor = request.getParameter("car-color");
 
         System.out.println(carName);
+        System.out.println(carColor);
 
-        request.getRequestDispatcher("index.html").forward(request, response);
+        Car car = new Car();
+
+        car.setCor(carColor);
+        car.setName(carName);
+
+        CarDao carDao = new CarDao();
+
+        carDao.createCar(car);
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 
