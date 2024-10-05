@@ -6,19 +6,25 @@ public class Car {
     private String name;
     private String cor;
 
-    public String getName() {
-        return name;
+    public Car(String name, String cor) {
+        this.name = name;
+        this.cor = cor;
     }
 
-    public void setName(String name) {
+    public Car(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+
     }
 
     public String getCor() {
         return cor;
     }
 
-    public void setCor(String cor) {
-        this.cor = cor;
-    }
+
 }
+
+

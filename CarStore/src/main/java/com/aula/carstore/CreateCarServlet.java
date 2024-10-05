@@ -14,7 +14,7 @@ import java.io.IOException;
 public class CreateCarServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 
         String carName = request.getParameter("car-name");
         String carColor = request.getParameter("car-color");
@@ -22,16 +22,15 @@ public class CreateCarServlet extends HttpServlet {
         System.out.println(carName);
         System.out.println(carColor);
 
-        Car car = new Car();
-
-        car.setCor(carColor);
-        car.setName(carName);
+        Car car = new Car(carName,carColor);
 
         CarDao carDao = new CarDao();
 
-        carDao.createCar(car);
+        new CarDao().createCar(car);
 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        resp.sendRedirect("/find-all-cars");
+
+
 
     }
 
